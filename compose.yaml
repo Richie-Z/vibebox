@@ -1,0 +1,22 @@
+services:
+  vibebox:
+    build:
+      context: .
+      dockerfile: Containerfile
+      args:
+        USER_ID: ${UID:-1000}
+        GROUP_ID: ${GID:-1000}
+    image: vibebox:latest
+    container_name: vibebox
+    userns_mode: keep-id
+    working_dir: /home/richie/work
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/home/richie/work:z
+      - vibebox-uv:/home/richie/.cache/uv
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  vibebox-uv:
