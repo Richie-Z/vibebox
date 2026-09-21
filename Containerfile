@@ -1,10 +1,14 @@
 FROM debian:12
 
+ARG USER_ID=1000
+ARG GROUP_ID=1000
+
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
        sudo curl ca-certificates git build-essential \
   && rm -rf /var/lib/apt/lists/* \
-  && useradd -m -s /bin/bash richie \
+  && groupadd -g ${GROUP_ID} richie \
+  && useradd -m -u ${USER_ID} -g richie -s /bin/bash richie \
   && usermod -aG sudo richie \
   && echo "richie ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/richie \
   && chmod 0440 /etc/sudoers.d/richie

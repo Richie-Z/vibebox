@@ -15,8 +15,10 @@ services:
     volumes:
       - ./:/home/richie/work:z
       - vibebox-uv:/home/richie/.cache/uv
-    security_opt:
-      - no-new-privileges:true
+      - vibebox-config:/home/richie/.config
+      - vibebox-data:/home/richie/.local/share
 
 volumes:
   vibebox-uv:
+  vibebox-config:
+  vibebox-data:
