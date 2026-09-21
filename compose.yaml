@@ -17,6 +17,7 @@ services:
       - vibebox-uv:/home/richie/.cache/uv
       - vibebox-config:/home/richie/.config
       - vibebox-data:/home/richie/.local/share
+      - ~/.ssh:/home/richie/.ssh:ro,z
 
 volumes:
   vibebox-uv:
